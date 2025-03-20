@@ -6,6 +6,7 @@ const base = new Airtable({apiKey: process.env.AIRTABLE_PAT})
 
 const table = base(process.env.AIRTABLE_TABLEID as string)
 const userTable = base(process.env.AIRTABLE_USERS_TABLEID as string)
+const checkinTable = base(process.env.AIRTABLE_CHECKIN_TABLEID as string)
 
 const fields = [
     "Email",
@@ -156,6 +157,7 @@ const transformDataSingleRecord = (record:Record<FieldSet>) => {
 export {
     table,
     userTable,
+    checkinTable,
     fields,
     transformData,
     transformDataSingleRecord
