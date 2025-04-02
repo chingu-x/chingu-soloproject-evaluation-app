@@ -4,6 +4,7 @@ export type CheckIn = {
 }
 
 export type CheckInFields = {
+    Timestamp: string,
     Email: string,
     "Discord Name": string,
     "Team Name": Tier, // This is really tier number / name
@@ -26,12 +27,12 @@ export type CheckInFields = {
     "Addl. Comments": string,
 }
 
-type ProcessRating =
+export type ProcessRating =
     | "GREEN - We have had a good start!"
     | "YELLOW - I'm nervous we won't finish."
     | "RED - It doesn't look good right now"
 
-type SprintNumber =
+export type SprintNumber =
     | "Sprint 1"
     | "Sprint 2"
     | "Sprint 3"
@@ -39,7 +40,7 @@ type SprintNumber =
     | "Sprint 5"
     | "Sprint 6"
 
-type CheckinFormRole =
+export type CheckinFormRole =
     | "Web Developer"
     | "UI/UX Designer"
     | "Data Scientist"
@@ -47,7 +48,7 @@ type CheckinFormRole =
     | "Scrum Master"
     | "unknown"
 
-type Tier =
+export type Tier =
     | "Tier 1"
     | "Tier 2"
     | "Tier 3"
