@@ -4,7 +4,7 @@ import { checkinTable, transformCheckinData } from "@/lib/airtable";
 
 export const getCheckInsByVoyage = async (voyage: string) => {
     const records = await checkinTable.select({
-        filterByFormula: `{Voyage} = "${voyage}"`,
+        filterByFormula: `{Voyage} = "${voyage.toUpperCase()}"`,
         sort: [{
             field: "Team No.",
             direction: "asc",
