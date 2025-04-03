@@ -6,6 +6,8 @@ import Nav from "@/components/Nav";
 import AuthProvider from "@/context/AuthProvider";
 import Maintenance from "@/components/Maintenance";
 import {Toaster} from "react-hot-toast";
+import { Suspense } from "react";
+import LoadingScreen from "@/app/loading";
 
 const inter = Inter({subsets: ['latin']})
 
@@ -47,7 +49,9 @@ export default function RootLayout({children}: {
                         }}
                     />
                     <main>
-                        {children}
+                        <Suspense fallback={<LoadingScreen />}>
+                            {children}
+                        </Suspense>
                     </main>
                 </ThemeProvider>
         </AuthProvider>

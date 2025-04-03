@@ -2,7 +2,7 @@
 
 import { CheckIn, CheckInFields } from "@/types/CheckinTypes";
 import { createColumnHelper, getCoreRowModel } from "@tanstack/table-core";
-import { Table, TableBody, TableHeader } from "@/components/ui/table";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { flexRender, useReactTable } from "@tanstack/react-table";
 
 const CheckinTable = ({records}: { records: CheckIn[] }) => {
@@ -31,30 +31,31 @@ const CheckinTable = ({records}: { records: CheckIn[] }) => {
             <Table className="border">
                 <TableHeader>
                     {table.getHeaderGroups().map((headerGroup)=>(
-                        <tr key={headerGroup.id}>
+                        <TableRow key={headerGroup.id}>
                             {headerGroup.headers.map((header)=>(
-                                <th key={header.id}>
+                                <TableHead key={header.id}>
                                     {flexRender(
                                         header.column.columnDef.header,
                                         header.getContext()
                                     )}
-                                </th>
+                                </TableHead>
                             ))}
-                        </tr>
+                        </TableRow>
                     ))}
                 </TableHeader>
                 <TableBody>
                     {table.getRowModel().rows.map((row)=>(
-                        <tr key={row.id}>
+                        <TableRow key={row.id}>
                             {row.getVisibleCells().map(cell=>(
-                                <td key={cell.id}>
+                                <TableCell
+                                    key={cell.id}>
                                     {flexRender(
                                         cell.column.columnDef.cell,
                                         cell.getContext()
                                     )}
-                                </td>
+                                </TableCell>
                             ))}
-                        </tr>
+                        </TableRow>
                     ))}
                 </TableBody>
             </Table>
