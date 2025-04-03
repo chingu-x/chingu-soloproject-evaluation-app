@@ -2,12 +2,12 @@
 
 import { CheckIn, CheckInFields } from "@/types/CheckinTypes";
 import { createColumnHelper, getCoreRowModel } from "@tanstack/table-core";
-import { Table, TableHeader } from "@/components/ui/table";
+import { Table, TableBody, TableHeader } from "@/components/ui/table";
 import { flexRender, useReactTable } from "@tanstack/react-table";
 
 const CheckinTable = ({records}: { records: CheckIn[] }) => {
 
-    const columnHeaders: Array<keyof CheckInFields> = ["Discord Name", "Team Name", "Team No."]
+    const columnHeaders: Array<keyof CheckInFields> = ["Discord Name", "Voyage","Team Name", "Team No."]
     const columnHelper = createColumnHelper<CheckIn>()
 
 
@@ -43,6 +43,20 @@ const CheckinTable = ({records}: { records: CheckIn[] }) => {
                         </tr>
                     ))}
                 </TableHeader>
+                <TableBody>
+                    {table.getRowModel().rows.map((row)=>(
+                        <tr key={row.id}>
+                            {row.getVisibleCells().map(cell=>(
+                                <td key={cell.id}>
+                                    {flexRender(
+                                        cell.column.columnDef.cell,
+                                        cell.getContext()
+                                    )}
+                                </td>
+                            ))}
+                        </tr>
+                    ))}
+                </TableBody>
             </Table>
         </div>
     )

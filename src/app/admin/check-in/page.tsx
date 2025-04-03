@@ -3,7 +3,6 @@ import CheckinTable from "@/components/checkins/checkinTable";
 
 const VoyageCheckIn = async () => {
     const checkin = await getLastestCheckIns()
-    console.log(checkin)
 
     return(
         <div>
