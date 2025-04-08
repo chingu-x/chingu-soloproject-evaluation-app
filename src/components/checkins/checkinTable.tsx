@@ -1,9 +1,8 @@
 'use client'
 
-import { CheckIn, CheckInFields } from "@/types/CheckinTypes";
+import { CheckIn } from "@/types/CheckinTypes";
 import {
     ColumnFiltersState,
-    createColumnHelper,
     getCoreRowModel, getFacetedUniqueValues,
     getFilteredRowModel,
     getPaginationRowModel
@@ -16,6 +15,7 @@ import Filter from "@/components/react-table/Filter";
 import { columnDef } from "@/components/checkins/columnDef";
 import { Dialog, DialogTrigger } from "@/components/ui/dialog";
 import CheckInDialogContent from "@/components/checkins/CheckInDialogContent";
+import { progressColor } from "@/styles/checkin/progress";
 
 const CheckinTable = ({ records }: { records: CheckIn[] }) => {
     const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
@@ -80,8 +80,7 @@ const CheckinTable = ({ records }: { records: CheckIn[] }) => {
                 <TableBody>
                     {table.getRowModel().rows.map((row) => (
                         <Dialog>
-
-                                <TableRow key={row.id}>
+                                <TableRow key={row.id} className={`${progressColor[row.original.fields["Progress Rating"]]?.border}`}>
                                     {row.getVisibleCells().map(cell => (
                                         <TableCell
                                             key={cell.id}>
@@ -96,7 +95,6 @@ const CheckinTable = ({ records }: { records: CheckIn[] }) => {
                                         </TableCell>
                                     ))}
                                 </TableRow>
-
                             <CheckInDialogContent record={row}/>
                         </Dialog>
 

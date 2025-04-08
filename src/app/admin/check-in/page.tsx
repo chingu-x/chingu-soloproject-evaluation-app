@@ -6,7 +6,7 @@ const VoyageCheckIn = async () => {
 
     return(
         <div>
-            Admin only - VoyageCheckIn
+            <h1 className="text-center">Latest 100 Voyage Check-ins</h1>
             <CheckinTable records={checkin} />
         </div>
     )

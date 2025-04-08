@@ -1,8 +1,6 @@
 import { CheckIn } from "@/types/CheckinTypes";
 import { DialogContent, DialogDescription } from "@/components/ui/dialog";
 import { Row } from "@tanstack/table-core";
-import { roleColors } from "@/styles/roles";
-import { getRole } from "@/lib/getRole";
 import { progressColor } from "@/styles/checkin/progress";
 
 const CheckInDialogContent = ({record}: {record: Row<CheckIn>}) => {

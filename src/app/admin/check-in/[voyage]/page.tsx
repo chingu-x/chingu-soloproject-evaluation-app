@@ -9,7 +9,11 @@ const CheckinByVoyagePage = async ({ params }: { params: { voyage: string } }) =
         return <div>No record found for voyage {params.voyage}</div>
     }
 
-    return <CheckinTable records={records}/>
+    return <>
+        <h1 className="text-center">{params.voyage} Checkins</h1>
+        <CheckinTable records={records}/>
+    </>
+
 
 }
 

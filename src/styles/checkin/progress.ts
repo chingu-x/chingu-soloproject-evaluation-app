@@ -17,7 +17,7 @@ export const progressColor:ProgressColor = {
     "YELLOW - I'm nervous we won't finish.":{
         text: 'text-yellow-500',
         bg: 'bg-yellow-600 text-black',
-        border: 'border-yellow-900'
+        border: 'border-yellow-300'
     },
     "RED - It doesn't look good right now":{
         text: 'text-red-500',

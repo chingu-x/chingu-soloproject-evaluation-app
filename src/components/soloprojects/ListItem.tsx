@@ -24,7 +24,7 @@ const SoloProjectsListItem = (
             <TableCell>
                 {fields["Role Type"]}
             </TableCell>
-            <TableCell>{fields.Tier.substring(0,7)}</TableCell>
+            <TableCell>{fields.Tier?.substring(0,7)}</TableCell>
             <TableCell>{fields.Evaluator}</TableCell>
         </TableRow>
     )

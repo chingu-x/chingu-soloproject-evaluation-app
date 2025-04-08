@@ -1,5 +1,6 @@
 import { createColumnHelper } from "@tanstack/table-core";
-import { CheckIn } from "@/types/CheckinTypes";
+import { CheckIn} from "@/types/CheckinTypes";
+
 
 const columnHelper = createColumnHelper<CheckIn>()
 
