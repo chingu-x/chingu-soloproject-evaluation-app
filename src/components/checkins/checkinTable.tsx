@@ -14,6 +14,8 @@ import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import Filter from "@/components/react-table/Filter";
 import { columnDef } from "@/components/checkins/columnDef";
+import { Dialog, DialogTrigger } from "@/components/ui/dialog";
+import CheckInDialogContent from "@/components/checkins/CheckInDialogContent";
 
 const CheckinTable = ({ records }: { records: CheckIn[] }) => {
     const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
@@ -54,7 +56,7 @@ const CheckinTable = ({ records }: { records: CheckIn[] }) => {
         <div className="mt-6 rounded-lg overflow-hidden w-[90%] mx-auto">
             <Table className="border">
                 <TableHeader>
-                    {table.getHeaderGroups().map((headerGroup) => (
+                    {table.getHeaderGroups().map((headerGroup) => <>
                         <TableRow key={headerGroup.id}>
                             {headerGroup.headers.map((header) => (
                                 <TableHead key={header.id}>
@@ -72,21 +74,32 @@ const CheckinTable = ({ records }: { records: CheckIn[] }) => {
                                 </TableHead>
                             ))}
                         </TableRow>
-                    ))}
+                        </>
+                    )}
                 </TableHeader>
                 <TableBody>
                     {table.getRowModel().rows.map((row) => (
-                        <TableRow key={row.id}>
-                            {row.getVisibleCells().map(cell => (
-                                <TableCell
-                                    key={cell.id}>
-                                    {flexRender(
-                                        cell.column.columnDef.cell,
-                                        cell.getContext()
-                                    )}
-                                </TableCell>
-                            ))}
-                        </TableRow>
+                        <Dialog>
+
+                                <TableRow key={row.id}>
+                                    {row.getVisibleCells().map(cell => (
+                                        <TableCell
+                                            key={cell.id}>
+                                            <DialogTrigger asChild>
+                                                <button className="w-full text-left">
+                                                    {flexRender(
+                                                        cell.column.columnDef.cell,
+                                                        cell.getContext()
+                                                    )}
+                                                </button>
+                                            </DialogTrigger>
+                                        </TableCell>
+                                    ))}
+                                </TableRow>
+
+                            <CheckInDialogContent record={row}/>
+                        </Dialog>
+
                     ))}
                 </TableBody>
             </Table>

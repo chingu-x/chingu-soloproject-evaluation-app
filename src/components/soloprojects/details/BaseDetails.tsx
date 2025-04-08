@@ -1,9 +1,8 @@
 'use client'
 
 import {Submission, VoyageRole} from "@/types/SoloProjectTypes";
-import {roleColors} from "@/styles/roles";
 import {Button} from "@/components/ui/button";
-import {AtSign, Check, ChevronsUpDown, Copy, Github, PencilLine, XCircle} from "lucide-react";
+import {Check, ChevronsUpDown, Copy, PencilLine, XCircle} from "lucide-react";
 import {Textarea} from "@/components/ui/textarea";
 import {Popover, PopoverContent, PopoverTrigger} from "@/components/ui/popover";
 import {Command, CommandEmpty, CommandGroup, CommandInput, CommandItem} from "@/components/ui/command";
