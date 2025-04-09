@@ -43,10 +43,24 @@ export const options: NextAuthOptions = {
             return token
         },
         async session({ session, token }) {
-            if (session?.user) {
-                session.user.roles = token.roles
-                session.user.evaluatorEmail = token.evaluatorEmail
+            // look up user permission, so it gets update even if user does not log out
+            const userInDb = await getUserfromDb(token.email!!)
+
+            if (userInDb) {
+                session.user.roles = userInDb.roles as ChinguAppRole[]
+                session.user.evaluatorEmail = userInDb.evaluatorEmail as string
+
+                // also updates the token
+                token.roles = userInDb.roles as ChinguAppRole[]
+                token.evaluatorEmail = userInDb.evaluatorEmail as string
+            } else {
+                session.user.roles = []
             }
+
+            // console.log("session", session)
+            // console.log("userInDb", userInDb)
+            // console.log("token", token)
+
             return session
         },
     }

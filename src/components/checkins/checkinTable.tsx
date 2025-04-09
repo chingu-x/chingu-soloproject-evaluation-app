@@ -20,19 +20,6 @@ import { progressColor } from "@/styles/checkin/progress";
 const CheckinTable = ({ records }: { records: CheckIn[] }) => {
     const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
 
-    /*
-    const columnHeaders: Array<keyof CheckInFields> = ["Discord Name", "Sprint No.", "Voyage", "Team Name", "Team No."]
-    const columnHelper = createColumnHelper<CheckIn>()
-
-    const columns = columnHeaders.map((columnName) => {
-        return columnHelper.accessor((row) => row.fields[columnName], {
-            id: columnName,
-            header: columnName,
-        })
-    })
-
-     */
-
     const table = useReactTable<CheckIn>({
         data: records,
         columns: columnDef,
@@ -56,8 +43,7 @@ const CheckinTable = ({ records }: { records: CheckIn[] }) => {
         <div className="mt-6 rounded-lg overflow-hidden w-[90%] mx-auto">
             <Table className="border">
                 <TableHeader>
-                    {table.getHeaderGroups().map((headerGroup) => <>
-                        <TableRow key={headerGroup.id}>
+                    {table.getHeaderGroups().map((headerGroup) => <TableRow key={headerGroup.id}>
                             {headerGroup.headers.map((header) => (
                                 <TableHead key={header.id}>
                                     <div>
@@ -68,33 +54,33 @@ const CheckinTable = ({ records }: { records: CheckIn[] }) => {
                                     </div>
                                     {header.column.getCanFilter() ? (
                                         <div className="grid place-content-center">
-                                            <Filter column={header.column}/>
+                                            <Filter column={header.column} key={`${header.id}-filter`}/>
                                         </div>
-                                    ): null }
+                                    ) : null}
                                 </TableHead>
                             ))}
                         </TableRow>
-                        </>
                     )}
                 </TableHeader>
                 <TableBody>
                     {table.getRowModel().rows.map((row) => (
-                        <Dialog>
-                                <TableRow key={row.id} className={`${progressColor[row.original.fields["Progress Rating"]]?.border}`}>
-                                    {row.getVisibleCells().map(cell => (
-                                        <TableCell
-                                            key={cell.id}>
-                                            <DialogTrigger asChild>
-                                                <button className="w-full text-left">
-                                                    {flexRender(
-                                                        cell.column.columnDef.cell,
-                                                        cell.getContext()
-                                                    )}
-                                                </button>
-                                            </DialogTrigger>
-                                        </TableCell>
-                                    ))}
-                                </TableRow>
+                        <Dialog key={`${row.id}-dialog`}>
+                            <TableRow key={row.id}
+                                      className={`${progressColor[row.original.fields["Progress Rating"]]?.border}`}>
+                                {row.getVisibleCells().map(cell => (
+                                    <TableCell
+                                        key={cell.id}>
+                                        <DialogTrigger key={`${cell.id}-dialog-trigger`} asChild>
+                                            <button className="w-full text-left">
+                                                {flexRender(
+                                                    cell.column.columnDef.cell,
+                                                    cell.getContext()
+                                                )}
+                                            </button>
+                                        </DialogTrigger>
+                                    </TableCell>
+                                ))}
+                            </TableRow>
                             <CheckInDialogContent record={row}/>
                         </Dialog>
 

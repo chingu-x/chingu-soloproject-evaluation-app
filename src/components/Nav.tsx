@@ -30,8 +30,6 @@ const Nav = () => {
         return <NavSkeleton />
     }
 
-    console.log(session)
-
     return <div className="flex justify-between items-center p-2 h-[90px]">
             <div className="flex flex-row items-center gap-5">
                 <a href={'/'}>
