@@ -13,7 +13,7 @@ export type CheckInFields = {
     "Time Spent - Pair programming": string,
     "Time Spent - On Your Own": string,
     "Time Spent - Team Activities": string,
-    "Progress Rating": ProgessRating,
+    "Progress Rating": ProgressRating,
     "Deployed to Prod": string,
     "Inactive Teammates": string,
     "Helpful Teammates": string,
@@ -27,7 +27,7 @@ export type CheckInFields = {
     "Addl. Comments": string,
 }
 
-export type ProgessRating =
+export type ProgressRating =
     | "GREEN - We have had a good start!"
     | "YELLOW - I'm nervous we won't finish."
     | "RED - It doesn't look good right now"

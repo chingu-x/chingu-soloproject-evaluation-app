@@ -1,6 +1,6 @@
 import Airtable, {FieldSet, Record, Records} from "airtable";
 import {EvaluationStatus, Submission, VoyageRole} from "@/types/SoloProjectTypes";
-import { CheckIn, CheckinFormRole, ProcessRating, SprintNumber, Tier } from "@/types/CheckinTypes";
+import { CheckIn, CheckinFormRole, ProgressRating, SprintNumber, Tier } from "@/types/CheckinTypes";
 
 const base = new Airtable({apiKey: process.env.AIRTABLE_PAT})
     .base(process.env.AIRTABLE_BASEID as string)

@@ -1,7 +1,7 @@
-import { ProgessRating } from "@/types/CheckinTypes";
+import { ProgressRating } from "@/types/CheckinTypes";
 
 type ProgressColor = {
-    [key in ProgessRating]: {
+    [key in ProgressRating]: {
         text: string;
         bg: string;
         border: string;
