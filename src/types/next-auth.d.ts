@@ -23,5 +23,6 @@ declare module "next-auth/jwt" {
     interface JWT extends DefaultJWT {
         roles: ChinguAppRole[],
         evaluatorEmail: string,
+        permissionLastChecked: number | null,
     }
 }

@@ -35,32 +35,44 @@ export const options: NextAuthOptions = {
 
             return allowedRoles.some(role=>user.roles.includes(role)) && userFromDb.status === "Active"// only allow access for Active staff with a record on airtable
         },
+        // jwt, runs when token is create or refreshed
+        // flow: jwt -> session, but not the other way
         async jwt({ token, user }) {
             if (user) {
+                console.log("user just logged in")
+                // initial login
                 token.roles = user.roles!
                 token.evaluatorEmail = user.evaluatorEmail as string
+                token.permissionLastChecked = Date.now()
+            } else {
+                console.log("[jwt] user already logged in ")
+                const checkInterval = 60 * 60 * 1000 // 1h
+                const shouldRefreshPermissions = !token.permissionLastChecked ||
+                    Date.now() > token.permissionLastChecked + checkInterval
+
+                if (shouldRefreshPermissions) {
+                    console.log(`[jwt] refresh permissions - ${new Date().toLocaleDateString()}`)
+
+                    try {
+                        const userInDb = await getUserfromDb(token.email!!)
+                        if (userInDb) {
+                            token.roles = userInDb.roles as ChinguAppRole[]
+                            token.evaluatorEmail = userInDb.evaluatorEmail as string
+                        }
+                        token.permissionLastChecked = Date.now()
+                    } catch (error) {
+                        console.error("Failed to refresh permission: ", error)
+                    }
+                }
             }
             return token
         },
+        // session: runs every request
         async session({ session, token }) {
-            // look up user permission, so it gets update even if user does not log out
-            const userInDb = await getUserfromDb(token.email!!)
-
-            if (userInDb) {
-                session.user.roles = userInDb.roles as ChinguAppRole[]
-                session.user.evaluatorEmail = userInDb.evaluatorEmail as string
-
-                // also updates the token
-                token.roles = userInDb.roles as ChinguAppRole[]
-                token.evaluatorEmail = userInDb.evaluatorEmail as string
-            } else {
-                session.user.roles = []
+            if (session?.user) {
+                session.user.roles = token.roles
+                session.user.evaluatorEmail = token.evaluatorEmail
             }
-
-            // console.log("session", session)
-            // console.log("userInDb", userInDb)
-            // console.log("token", token)
-
             return session
         },
     }
