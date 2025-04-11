@@ -51,7 +51,7 @@ export const options: NextAuthOptions = {
                     Date.now() > token.permissionLastChecked + checkInterval
 
                 if (shouldRefreshPermissions) {
-                    console.log(`[jwt] refresh permissions - ${new Date().toLocaleDateString()}`)
+                    console.log(`[jwt] refresh permissions - ${new Date().toString()}`)
 
                     try {
                         const userInDb = await getUserfromDb(token.email!!)

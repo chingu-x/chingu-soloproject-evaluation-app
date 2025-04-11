@@ -2,9 +2,9 @@ import {Comment} from "@/types/CommentTypes";
 import {Card, CardContent} from "@/components/ui/card";
 
 const CommentItem = ({comment}: { comment: Comment }) => {
-    return <Card>
+    return <Card className="mt-3">
         <CardContent className="grid gap-4 mt-5">
-            <p>{comment.text}</p>
+            <p className="whitespace-break-spaces">{comment.text}</p>
             {
                 comment.lastUpdatedTime
                     ? <div className="text-xs leading-none text-gray-500">
