@@ -35,17 +35,17 @@ export const options: NextAuthOptions = {
 
             return allowedRoles.some(role=>user.roles.includes(role)) && userFromDb.status === "Active"// only allow access for Active staff with a record on airtable
         },
-        // jwt, runs when token is create or refreshed
+        // jwt, runs when token is created or refreshed
         // flow: jwt -> session, but not the other way
         async jwt({ token, user }) {
             if (user) {
-                console.log(`user: ${user.email} just logged in`)
+                console.log(`[jwt] user: ${user.email} just logged in.`)
                 // initial login
                 token.roles = user.roles!
                 token.evaluatorEmail = user.evaluatorEmail as string
                 token.permissionLastChecked = Date.now()
             } else {
-                console.log(`[jwt] user ${token.email} already logged in `)
+                console.log(`[jwt] user ${token.email} already logged in. Last permission check: ${new Date(token.permissionLastChecked!).toString()} `)
                 const checkInterval = 60 * 60 * 1000 // 1h
                 const shouldRefreshPermissions = !token.permissionLastChecked ||
                     Date.now() > token.permissionLastChecked + checkInterval
