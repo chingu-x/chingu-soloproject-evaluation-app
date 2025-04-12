@@ -12,7 +12,7 @@ const Denied = async () => {
     const headerList = headers()
 
     console.log(`[Access denied] \n    user: ${session?.user.evaluatorEmail} \n    referer: ${headerList.get('referer')}`)
-    Sentry.captureMessage(`[Access denied] user: ${session?.user.evaluatorEmail}`, {
+    Sentry.captureMessage(`[Access denied] user: ${session?.user.evaluatorEmail} referer: ${headerList.get('referer')}`, {
         level: "error"
     })
 
