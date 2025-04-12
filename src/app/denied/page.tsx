@@ -5,12 +5,18 @@ import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/componen
 import { ShieldClose } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import * as Sentry from "@sentry/nextjs";
 
 const Denied = async () => {
     const session = await getServerSession(options)
     const headerList = headers()
 
     console.log(`[Access denied] \n    user: ${session?.user.evaluatorEmail} \n    referer: ${headerList.get('referer')}`)
+    Sentry.captureMessage(`[Access denied] user: ${session?.user.evaluatorEmail}`, {
+        level: "error"
+    })
+
+    
     return (
         <div className="flex min-h-screen items-center justify-center p-4">
             <Card className="mx-auto max-w-md">

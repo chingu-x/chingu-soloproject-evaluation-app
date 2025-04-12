@@ -2,6 +2,7 @@ import type { NextAuthOptions} from "next-auth";
 import GithubProvider, {GithubProfile} from 'next-auth/providers/github'
 import {getUserfromDb} from "@/services/users";
 import { ChinguAppRole } from "@/types/UserTypes";
+import * as Sentry from "@sentry/nextjs";
 
 export const options: NextAuthOptions = {
     providers: [
@@ -40,6 +41,7 @@ export const options: NextAuthOptions = {
         async jwt({ token, user }) {
             if (user) {
                 console.log(`[jwt] user: ${user.email} just logged in.`)
+                Sentry.captureMessage(`user: ${user.email} just logged in.`, "info")
                 // initial login
                 token.roles = user.roles!
                 token.evaluatorEmail = user.evaluatorEmail as string
