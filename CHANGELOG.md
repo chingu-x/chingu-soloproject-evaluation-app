@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.12.0](https://github.com/chingu-x/chingu-soloproject-evaluation-app/compare/v1.11.0...v1.12.0) (2025-08-20)
+
+
+### Features
+
+* **admin-ui:** add reusable components for error and no-record states, refactor member details and check-in flows ([3292254](https://github.com/chingu-x/chingu-soloproject-evaluation-app/commit/3292254175449208e594a36f995594342f488f76))
+* **memberProfile:** Complete Solo project table ([ef63366](https://github.com/chingu-x/chingu-soloproject-evaluation-app/commit/ef63366a4aaaf6af37d7a93dda81a870422edb46))
+
 ## [1.11.0](https://github.com/chingu-x/chingu-soloproject-evaluation-app/compare/v1.10.0...v1.11.0) (2025-08-18)
 
 
