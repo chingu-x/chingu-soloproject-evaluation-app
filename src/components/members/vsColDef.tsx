@@ -33,13 +33,12 @@ export const vsColDef = (baseURL: string) => [
     id: 'Voyage',
     header: 'Voyage',
     cell: ({ row }) => {
-      const voyageNum =
-        row.original.fields.Voyage?.slice(1);
+      const voyageNum = row.original.fields.Voyage;
       return (
         <TooltipWithLink
-          tooltip={`Go to V${voyageNum}`}
+          tooltip={`Go to ${voyageNum}`}
           link={`/admin/voyage/${voyageNum}/signups`}
-          linkText={`V${voyageNum}`}
+          linkText={`${voyageNum}`}
         />
       );
     },

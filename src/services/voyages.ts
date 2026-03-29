@@ -37,12 +37,12 @@ export const getLastestVoyageSignups = async (): Promise<
 };
 
 export const getVoyageSignupByVoyageNum = async (
-  voyageNum: number
+  voyageNum: string
 ): Promise<ActionResponse<VoyageSignup[]>> => {
   try {
     const records = await voyageSignupTable
       .select({
-        filterByFormula: `AND({Voyage} = "V${voyageNum}", {Email} != "")`,
+        filterByFormula: `AND({Voyage} = "${voyageNum}", {Email} != "")`,
         sort: [
           {
             field: 'Timestamp',
@@ -54,12 +54,12 @@ export const getVoyageSignupByVoyageNum = async (
 
     return {
       success: true,
-      message: `Successfully get voyage signup data for V${voyageNum}`,
+      message: `Successfully get voyage signup data for ${voyageNum}`,
       data: transformVoyageSignupRecords(records),
     };
   } catch (e) {
     throw new Error(
-      `Failed to get voyage signup data for V${voyageNum}. Error: ${e}`
+      `Failed to get voyage signup data for ${voyageNum}. Error: ${e}`
     );
   }
 };
