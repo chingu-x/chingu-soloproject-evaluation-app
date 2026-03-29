@@ -109,6 +109,10 @@ export const vsColDef = (baseURL: string) => [
     id: 'Email',
     header: 'Email',
   }),
+  columnHelper.accessor((row) => row.fields['GitHub ID'], {
+    id: 'GitHub ID',
+    header: 'GitHub ID',
+  }),
   columnHelper.display({
     id: 'Role',
     header: 'Role',

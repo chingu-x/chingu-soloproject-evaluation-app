@@ -37,10 +37,12 @@ const MemberProfile = ({
   const [vsColVis, setVsColVis] = useState<{}>({
     Email: false,
     'Discord Name': false,
+    'GitHub ID': false,
   });
   const [spColVis, setSpColVis] = useState<{}>({
     Email: false,
     'Discord Name': false,
+    'GitHub ID': false,
   });
   const [vsSorting, setVsSorting] = useState<SortingState>([
     { id: 'Timestamp', desc: true },
@@ -113,6 +115,7 @@ const MemberProfile = ({
         columns={[
           vsTable.getColumn('Email')!,
           vsTable.getColumn('Discord Name')!,
+          vsTable.getColumn('GitHub ID')!,
         ]}
       />
       <StandardReactTable table={vsTable} />
@@ -121,6 +124,7 @@ const MemberProfile = ({
         columns={[
           spTable.getColumn('Email')!,
           spTable.getColumn('Discord Name')!,
+          spTable.getColumn('GitHub ID')!,
         ]}
       />
       <StandardReactTable table={spTable} />

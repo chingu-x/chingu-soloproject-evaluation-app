@@ -55,6 +55,10 @@ export const spColDef = (baseURL: string) => [
     id: 'Email',
     header: 'Email',
   }),
+  columnHelper.accessor((row) => row.fields['GitHub ID'], {
+    id: 'GitHub ID',
+    header: 'GitHub ID',
+  }),
   columnHelper.accessor(
     (row) => row.fields['Evaluation Status'],
     {
