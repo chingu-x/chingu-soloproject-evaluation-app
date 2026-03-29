@@ -1,4 +1,4 @@
-import AirtableLinkCell from '@/components/react-table/cells/AirtableLink';
+import AirtableLinkCell from '@/components/ui/react-table/AirtableLink';
 import { Application } from '@/types/ApplicationTypes';
 import { createColumnHelper } from '@tanstack/table-core';
 

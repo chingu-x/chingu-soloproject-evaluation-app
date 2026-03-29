@@ -1,5 +1,5 @@
-import TooltipWithLink from '@/components/react-table/cells/TooltipWithLink';
 import SetTierBtn from '@/components/soloprojects/tiers/SetTierBtn';
+import TooltipWithLink from '@/components/ui/react-table/TooltipWithLink';
 import { urlLinkParser } from '@/lib/urlLinkParser';
 import {
   SoloProjectSubmission,

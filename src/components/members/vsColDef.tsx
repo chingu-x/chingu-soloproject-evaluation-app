@@ -1,8 +1,8 @@
-import AirtableLinkCell from '@/components/react-table/cells/AirtableLink';
-import HoverCardCell from '@/components/react-table/cells/HoverCardCell';
-import Role from '@/components/react-table/cells/Role';
-import TooltipWithLink from '@/components/react-table/cells/TooltipWithLink';
-import ReactTableVoyageStatusCell from '@/components/react-table/cells/VoyageStatus';
+import AirtableLinkCell from '@/components/ui/react-table/AirtableLink';
+import HoverCardCell from '@/components/ui/react-table/HoverCardCell';
+import Role from '@/components/ui/react-table/Role';
+import TooltipWithLink from '@/components/ui/react-table/TooltipWithLink';
+import ReactTableVoyageStatusCell from '@/components/ui/react-table/VoyageStatus';
 import { VoyageSignup } from '@/types/VoyageSignupTypes';
 import { createColumnHelper } from '@tanstack/table-core';
 import { Clipboard, Info } from 'lucide-react';
