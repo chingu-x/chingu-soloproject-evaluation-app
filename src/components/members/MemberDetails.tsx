@@ -40,7 +40,9 @@ const MemberDetails = ({
 
     const add = (val: unknown) => {
       if (typeof val === 'string') {
-        const v = val.trim();
+        const v = val
+          .replace(/^\s+/, (m) => '␠'.repeat(m.length))
+          .replace(/\s+$/, (m) => '␠'.repeat(m.length));
         if (v) results.add(v);
       } else if (Array.isArray(val)) {
         for (const item of val) {
