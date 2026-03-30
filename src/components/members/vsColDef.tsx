@@ -47,7 +47,9 @@ export const vsColDef = (baseURL: string) => [
     id: 'Tier',
     header: 'Tier',
     cell: ({ row }) => {
-      return <span>{row.original.fields['Tier'][5]}</span>;
+      return (
+        <span>{row.original.fields['Team Name'][5]}</span>
+      );
     },
   }),
   columnHelper.display({
