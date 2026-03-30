@@ -12,9 +12,11 @@ const TooltipWithLink = ({
   linkText,
   tooltip,
   Icon,
+  openInNewTab = true,
 }: {
-  link: string;
+  link: string | null | undefined;
   tooltip: string;
+  openInNewTab?: boolean;
 } & (
   | { linkText: string; Icon?: ComponentType }
   | { linkText?: string; Icon: ComponentType }
@@ -23,7 +25,11 @@ const TooltipWithLink = ({
   return (
     <Tooltip>
       <TooltipTrigger asChild>
-        <Link href={link}>
+        <Link
+          href={link}
+          target={openInNewTab ? '_blank' : '_self'}
+          rel="noopener noreferrer"
+        >
           {linkText}
           {Icon && <Icon />}
         </Link>

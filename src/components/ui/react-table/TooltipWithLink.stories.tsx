@@ -2,13 +2,16 @@ import type {
   Meta,
   StoryObj,
 } from '@storybook/nextjs-vite';
-import { ExternalLink, Info, Link2 } from 'lucide-react';
+import {
+  ExternalLink,
+  Github,
+  Info,
+  Link2,
+} from 'lucide-react';
 import '../../../app/globals.css';
-import * as Module from './TooltipWithLink';
+import TooltipWithLink from './TooltipWithLink';
 
-const Component =
-  (Module as any).default ??
-  (Module as any).TooltipWithLink;
+const Component = TooltipWithLink;
 
 type T = typeof Component;
 
@@ -32,12 +35,19 @@ const meta: Meta<T> = {
       description: 'The text to display for the link',
     },
     Icon: {
-      options: ['None', 'ExternalLink', 'Link2', 'Info'],
+      options: [
+        'None',
+        'ExternalLink',
+        'Link2',
+        'Info',
+        'Github',
+      ],
       mapping: {
         None: null,
         ExternalLink,
         Link2,
         Info,
+        Github,
       },
       control: {
         type: 'select',
@@ -46,9 +56,18 @@ const meta: Meta<T> = {
           ExternalLink: 'External Link',
           Link2: 'Link',
           Info: 'Info',
+          Github: 'Github',
         },
       },
-      description: 'Optional icon to display',
+      description: `
+    import { Info } from 'lucide-react'
+    Icon={Info}
+      `,
+    },
+    openInNewTab: {
+      control: 'boolean',
+      description: 'Whether the link is external',
+      defaultValue: true,
     },
   },
 };
@@ -68,7 +87,7 @@ export const TextOnly: Story = {
 export const IconOnly: Story = {
   args: {
     link: 'https://chingu.io',
-    Icon: 'ExternalLink',
+    Icon: ExternalLink,
     tooltip: 'Go to Chingu website',
   },
 };
@@ -77,7 +96,7 @@ export const TextAndIcon: Story = {
   args: {
     link: 'https://chingu.io',
     linkText: 'Chingu',
-    Icon: 'Link2',
+    Icon: Link2,
     tooltip: 'Go to Chingu website',
   },
 };
@@ -87,5 +106,6 @@ export const InternalLink: Story = {
     link: '/dashboard',
     linkText: 'Dashboard',
     tooltip: 'Go to your dashboard',
+    openInNewTab: false,
   },
 };

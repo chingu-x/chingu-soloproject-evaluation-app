@@ -7,15 +7,10 @@ import { getVoyageSignupByVoyageNum } from '@/services/voyages';
 import { z } from 'zod';
 
 const paramsSchema = z.object({
-  voyageNum: z
-    .string()
-    .transform((val) => Number(val))
-    .refine(
-      (num) => !isNaN(num) && num >= 40 && num <= 100,
-      {
-        message: 'Invalid voyage number',
-      }
-    ),
+  voyageNum: z.string().regex(/^[XV]\d{2}$/, {
+    message:
+      'Voyage must start with X or V and be followed by 2 digits',
+  }),
 });
 
 const SingleVoyageSignupPage = async ({

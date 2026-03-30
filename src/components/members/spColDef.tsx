@@ -1,7 +1,7 @@
-import AirtableLinkCell from '@/components/react-table/cells/AirtableLink';
-import HoverCardCell from '@/components/react-table/cells/HoverCardCell';
-import ReactTableRoleCell from '@/components/react-table/cells/Role';
-import TooltipWithLink from '@/components/react-table/cells/TooltipWithLink';
+import AirtableLinkCell from '@/components/ui/react-table/AirtableLink';
+import HoverCardCell from '@/components/ui/react-table/HoverCardCell';
+import ReactTableRoleCell from '@/components/ui/react-table/Role';
+import TooltipWithLink from '@/components/ui/react-table/TooltipWithLink';
 import { SoloProjectSubmission } from '@/types/SoloProjectTypes';
 import { SiGithub } from '@icons-pack/react-simple-icons';
 import { createColumnHelper } from '@tanstack/table-core';
@@ -54,6 +54,10 @@ export const spColDef = (baseURL: string) => [
   columnHelper.accessor((row) => row.fields['Email'], {
     id: 'Email',
     header: 'Email',
+  }),
+  columnHelper.accessor((row) => row.fields['GitHub ID'], {
+    id: 'GitHub ID',
+    header: 'GitHub ID',
   }),
   columnHelper.accessor(
     (row) => row.fields['Evaluation Status'],

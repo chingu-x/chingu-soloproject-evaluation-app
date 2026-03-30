@@ -1,4 +1,5 @@
 import SetTierBtn from '@/components/soloprojects/tiers/SetTierBtn';
+import TooltipWithLink from '@/components/ui/react-table/TooltipWithLink';
 import { urlLinkParser } from '@/lib/urlLinkParser';
 import {
   SoloProjectSubmission,
@@ -9,8 +10,12 @@ import {
   SiGithub,
 } from '@icons-pack/react-simple-icons';
 import { createColumnHelper } from '@tanstack/table-core';
-import { ExternalLink, LinkIcon } from 'lucide-react';
-import Link from 'next/link';
+import {
+  ExternalLink,
+  Globe,
+  Image,
+  NotebookText,
+} from 'lucide-react';
 
 const columnHelper =
   createColumnHelper<SoloProjectSubmission>();
@@ -66,32 +71,116 @@ export const tierMismatchColumnDef = (
   ),
   columnHelper.display({
     id: 'Links',
-    cell: ({ row }) => (
-      <div className="flex gap-2 items-center">
-        <Link
-          href={`/solo-project/${row.original.id}`}
-          target="_blank"
-        >
-          <ExternalLink />
-        </Link>
-        <a
-          href={urlLinkParser(
-            row.original.fields['GitHub Repo URL']
-          )}
-          target="_blank"
-        >
-          <SiGithub />
-        </a>
-        <a
-          href={urlLinkParser(
-            row.original.fields['Deployed App URL']
-          )}
-          target="_blank"
-        >
-          <LinkIcon />
-        </a>
-      </div>
-    ),
+    cell: ({ row }) => {
+      switch (row.original.fields['Role']) {
+        case 'Developer':
+        case 'Software Developer':
+          return (
+            <div className="flex gap-2 items-center">
+              <TooltipWithLink
+                Icon={ExternalLink}
+                link={`/solo-project/${row.original.id}`}
+                tooltip="Solo Project"
+              />
+              <TooltipWithLink
+                Icon={SiGithub}
+                link={urlLinkParser(
+                  row.original.fields['GitHub Repo URL']
+                )}
+                tooltip="Github Repo URL"
+              />
+              <TooltipWithLink
+                Icon={Globe}
+                link={urlLinkParser(
+                  row.original.fields['Deployed App URL']
+                )}
+                tooltip="Deployed App URL"
+              />
+            </div>
+          );
+        case 'UI/UX':
+        case 'UI / UX Designer':
+        case 'UI/UX Designer':
+          return (
+            <div className="flex gap-2 items-center">
+              <TooltipWithLink
+                Icon={ExternalLink}
+                link={`/solo-project/${row.original.id}`}
+                tooltip="Solo Project"
+              />
+              <TooltipWithLink
+                Icon={Image}
+                link={urlLinkParser(
+                  row.original.fields['UI/UX Project URL']
+                )}
+                tooltip="UI/UX Project URL"
+              />
+            </div>
+          );
+        case 'Product Owner':
+          return (
+            <div className="flex gap-2 items-center">
+              <TooltipWithLink
+                Icon={ExternalLink}
+                link={`/solo-project/${row.original.id}`}
+                tooltip="Solo Project"
+              />
+              <TooltipWithLink
+                Icon={NotebookText}
+                link={urlLinkParser(
+                  row.original.fields[
+                    'PO Product Backlog URL'
+                  ]
+                )}
+                tooltip="PO Product Backlog URL"
+              />
+            </div>
+          );
+        case 'Scrum Master':
+          return (
+            <div className="flex gap-2 items-center">
+              <TooltipWithLink
+                Icon={ExternalLink}
+                link={`/solo-project/${row.original.id}`}
+                tooltip="Solo Project"
+              />
+            </div>
+          );
+        default:
+          return <div>Invalid Role</div>;
+      }
+    },
+    // row.original.fields['Role'] === 'Developer' ? (
+    //   <div className="flex gap-2 items-center">
+    //     <TooltipWithLink
+    //       Icon={ExternalLink}
+    //       link={`/solo-project/${row.original.id}`}
+    //       tooltip="Solo Project"
+    //     />
+    //     <TooltipWithLink
+    //       Icon={SiGithub}
+    //       link={urlLinkParser(
+    //         row.original.fields['GitHub Repo URL']
+    //       )}
+    //       tooltip="Github Repo URL"
+    //     />
+    //     <TooltipWithLink
+    //       Icon={LinkIcon}
+    //       link={urlLinkParser(
+    //         row.original.fields['Deployed App URL']
+    //       )}
+    //       tooltip="Deployed App URL"
+    //     />
+    //   </div>
+    // )
+    //   : row.original.fields['Role'] === 'UI/UX'||
+    //     row.original.fields['Role'] === 'UI / UX Designer' ||
+    //     row.original.fields['Role'] === 'UI/UX Designer'
+    //     ?
+    //     (
+    //
+    //     )
+    //     :
   }),
   columnHelper.accessor((row) => row.fields['Tier'], {
     id: 'Tier',

@@ -1,4 +1,4 @@
-import TooltipWithLink from '@/components/react-table/cells/TooltipWithLink';
+import TooltipWithLink from '@/components/ui/react-table/TooltipWithLink';
 import { Schedule } from '@/types/ScheduleTypes';
 import { createColumnHelper } from '@tanstack/table-core';
 import { CheckCheckIcon } from 'lucide-react';

@@ -1,7 +1,7 @@
-import AirtableLinkCell from '@/components/react-table/cells/AirtableLink';
-import Role from '@/components/react-table/cells/Role';
 import DiscordDMSheet from '@/components/soloprojects/DiscordDMSheet';
 import MemberProfileLinkButton from '@/components/ui/navigation/MemberProfileLinkButton';
+import AirtableLinkCell from '@/components/ui/react-table/AirtableLink';
+import Role from '@/components/ui/react-table/Role';
 import { TierMismatchDialog } from '@/components/voyages/signups/TierMismatchDialog';
 import { VoyageSignup } from '@/types/VoyageSignupTypes';
 import { createColumnHelper } from '@tanstack/table-core';

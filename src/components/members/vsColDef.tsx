@@ -1,8 +1,8 @@
-import AirtableLinkCell from '@/components/react-table/cells/AirtableLink';
-import HoverCardCell from '@/components/react-table/cells/HoverCardCell';
-import Role from '@/components/react-table/cells/Role';
-import TooltipWithLink from '@/components/react-table/cells/TooltipWithLink';
-import ReactTableVoyageStatusCell from '@/components/react-table/cells/VoyageStatus';
+import AirtableLinkCell from '@/components/ui/react-table/AirtableLink';
+import HoverCardCell from '@/components/ui/react-table/HoverCardCell';
+import Role from '@/components/ui/react-table/Role';
+import TooltipWithLink from '@/components/ui/react-table/TooltipWithLink';
+import ReactTableVoyageStatusCell from '@/components/ui/react-table/VoyageStatus';
 import { VoyageSignup } from '@/types/VoyageSignupTypes';
 import { createColumnHelper } from '@tanstack/table-core';
 import { Clipboard, Info } from 'lucide-react';
@@ -33,13 +33,12 @@ export const vsColDef = (baseURL: string) => [
     id: 'Voyage',
     header: 'Voyage',
     cell: ({ row }) => {
-      const voyageNum =
-        row.original.fields.Voyage?.slice(1);
+      const voyageNum = row.original.fields.Voyage;
       return (
         <TooltipWithLink
-          tooltip={`Go to V${voyageNum}`}
+          tooltip={`Go to ${voyageNum}`}
           link={`/admin/voyage/${voyageNum}/signups`}
-          linkText={`V${voyageNum}`}
+          linkText={`${voyageNum}`}
         />
       );
     },
@@ -48,7 +47,9 @@ export const vsColDef = (baseURL: string) => [
     id: 'Tier',
     header: 'Tier',
     cell: ({ row }) => {
-      return <span>{row.original.fields['Tier'][5]}</span>;
+      return (
+        <span>{row.original.fields['Team Name'][5]}</span>
+      );
     },
   }),
   columnHelper.display({
@@ -108,6 +109,10 @@ export const vsColDef = (baseURL: string) => [
   columnHelper.accessor((row) => row.fields['Email'], {
     id: 'Email',
     header: 'Email',
+  }),
+  columnHelper.accessor((row) => row.fields['GitHub ID'], {
+    id: 'GitHub ID',
+    header: 'GitHub ID',
   }),
   columnHelper.display({
     id: 'Role',
