@@ -1,5 +1,15 @@
 # Changelog
 
+## [1.18.3](https://github.com/chingu-x/chingu-soloproject-evaluation-app/compare/v1.18.2...v1.18.3) (2026-05-21)
+
+
+### Bug Fixes
+
+* crash when no Team name(tier) for certain roles using the new voyage signup form ([13c5096](https://github.com/chingu-x/chingu-soloproject-evaluation-app/commit/13c50963f17f861ffd561812b28439da20de79e0))
+* crash when no Team name(tier) for certain roles using the new voyage signup form ([1b58790](https://github.com/chingu-x/chingu-soloproject-evaluation-app/commit/1b58790c77f5711af48d40ff5eb779153316dae0))
+* update schedule and voyage signup links to work with voyageXP ([a30cab0](https://github.com/chingu-x/chingu-soloproject-evaluation-app/commit/a30cab04517643c2ece04d1004c4b5b48affc917))
+* update schedule and voyage signup links to work with voyageXP ([ac08e17](https://github.com/chingu-x/chingu-soloproject-evaluation-app/commit/ac08e1707e51f2f22218c7f41c3c1d723b09be6c))
+
 ## [1.18.2](https://github.com/chingu-x/chingu-soloproject-evaluation-app/compare/v1.18.1...v1.18.2) (2026-05-03)
 
 
