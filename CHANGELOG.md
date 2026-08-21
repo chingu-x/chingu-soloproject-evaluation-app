@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.18.4](https://github.com/chingu-x/chingu-soloproject-evaluation-app/compare/v1.18.3...v1.18.4) (2026-08-21)
+
+
+### Bug Fixes
+
+* add github issuer ([d129d0f](https://github.com/chingu-x/chingu-soloproject-evaluation-app/commit/d129d0f4d38c758356e07db555bf4d86154a11b2))
+
 ## [1.18.3](https://github.com/chingu-x/chingu-soloproject-evaluation-app/compare/v1.18.2...v1.18.3) (2026-05-21)
 
 
